@@ -1,22 +1,35 @@
-import logo from './logo.svg';
+import { BrowserRouter, Navigate, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 
 function App() {
   return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="*" element={<Navigate to="/jesse" replace />} />
+        <Route path="/jesse" element={<HuutistaPage name="Jesselle" />} />
+        <Route path="/toni" element={<HuutistaPage name="Tonille" />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+function HuutistaPage({ name }) {
+  return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <nav>
+          <ul style={{ display: 'flex', columnGap: '30px', listStyle: 'none' }}>
+            <li>
+              <Link to="/jesse">Jesse</Link>
+            </li>
+            <li>
+              <Link to="/toni">Toni</Link>
+            </li>
+          </ul>
+        </nav>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Huutista <code>{name}</code> :D
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
